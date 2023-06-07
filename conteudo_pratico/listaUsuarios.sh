@@ -17,6 +17,8 @@
 #
 #   v1.0 06/06/2023, Guilherme:
 #       - Início do programa
+#   v1.1 07/06/2023, Guilherme:
+#       - Adicionado Case
 # ------------------------------------------------------------------------ #
 # Testado em:
 #   bash 5.1.16
@@ -32,19 +34,13 @@ MENSAGEM_USO="
     -s - Ordernar a saída
     -m - Coloca em maiúsculo
 "
-VERSAO="v1.0"
+VERSAO="v1.1"
 # ------------------------------------------------------------------------ #
 # ------------------------------- EXECUÇÃO ----------------------------------------- #
-if [ "$1" = "-h" ]; then
-    echo "$MENSAGEM_USO" && exit 0
-fi
-if [ "$1" = "-v" ]; then
-    echo "$VERSAO" && exit 0
-fi
-if [ "$1" = "-s" ]; then
-    echo "$USUARIOS" | sort && exit 0
-fi
-if [ "$1" = "-m" ]; then
-    echo "$USUARIOS" | tr [a-z] [A-Z] && exit 0
-fi
-echo "$USUARIOS"
+case "$1" in
+  -h) echo "$MENSAGEM_USO" && exit 0               ;;
+  -v) echo "$VERSAO" && exit 0                     ;;
+  -s) echo "$USUARIOS" | sort && exit 0            ;;
+  -m) echo "$USUARIOS" | tr [a-z] [A-Z] && exit 0  ;;
+   *) echo "$USUARIOS"                             ;;
+esac
